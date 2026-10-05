@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kredit iP Banjarnegara</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#f3f7ff,#e8eefb);
+  color:#172033;min-height:100vh;
+}
+.login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px}
+.card{
+  width:100%;max-width:430px;background:#fff;border-radius:22px;
+  padding:28px;box-shadow:0 15px 45px rgba(20,40,80,.12)
+}
+.logo{
+  width:70px;height:70px;border-radius:18px;background:#111827;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:25px;
+  font-weight:800;margin:0 auto 16px
+}
+h1,h2{margin:0 0 10px;text-align:center}
+.subtitle{text-align:center;color:#697386;margin-bottom:24px}
+label{display:block;font-weight:700;margin:14px 0 7px}
+input{
+  width:100%;padding:13px 14px;border:1px solid #d6dce8;border-radius:11px;
+  font-size:15px;outline:none
+}
+input:focus{border-color:#2563eb}
+button{
+  border:0;border-radius:11px;padding:13px 16px;font-size:15px;
+  font-weight:700;cursor:pointer;width:100%;margin-top:16px
+}
+.login-btn{background:#111827;color:white}
+.hidden{display:none!important}
+.app{max-width:900px;margin:auto;padding:20px}
+.header{
+  background:#111827;color:#fff;border-radius:20px;padding:22px;
+  margin-bottom:18px;box-shadow:0 10px 30px rgba(0,0,0,.12)
+}
+.header h1{text-align:left;font-size:25px;margin:0}
+.header p{margin:7px 0 0;color:#cbd5e1}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
+.info{
+  background:#fff;border-radius:17px;padding:19px;box-shadow:0 8px 25px rgba(20,40,80,.08)
+}
+.info .label{font-size:13px;color:#697386;margin-bottom:8px}
+.info .value{font-size:20px;font-weight:800}
+.total{
+  margin-top:15px;background:#fff;border-radius:17px;padding:20px;
+  box-shadow:0 8px 25px rgba(20,40,80,.08)
+}
+.total-row{display:flex;justify-content:space-between;gap:15px;margin:10px 0}
+.total-final{
+  border-top:1px solid #e5e7eb;padding-top:14px;margin-top:14px;
+  font-size:21px;font-weight:800
+}
+.pay{
+  display:block;text-align:center;text-decoration:none;background:#16a34a;
+  color:white;border-radius:13px;padding:15px;margin-top:18px;font-weight:800
+}
+.pay small{display:block;font-weight:500;margin-top:4px;opacity:.9}
+.logout{background:#e5e7eb;color:#172033;margin-top:12px}
+@media(max-width:600px){
+ .info-grid{grid-template-columns:1fr}
+ .app{padding:14px}
+}
+</style>
+</head>
+<body>
+
+<div id="loginPage" class="login-wrap">
+  <div class="card">
+    <div class="logo">iP</div>
+    <h1>Kredit iP Banjarnegara</h1>
+    <div class="subtitle">Login untuk melihat informasi kredit</div>
+
+    <label for="username">Username</label>
+    <input id="username" type="text" autocomplete="username" placeholder="Masukkan username">
+
+    <label for="password">Password</label>
+    <input id="password" type="password" autocomplete="current-password" placeholder="Masukkan password">
+
+    <button class="login-btn" onclick="login()">Masuk</button>
+    <div id="error" style="color:#dc2626;text-align:center;margin-top:12px;font-size:14px"></div>
+  </div>
+</div>
+
+<div id="appPage" class="hidden">
+  <main class="app">
+    <section class="header">
+      <h1>Kredit iP Banjarnegara</h1>
+      <p>Informasi pembayaran kredit iPhone</p>
+    </section>
+
+    <section class="info-grid">
+      <div class="info">
+        <div class="label">Nama Kreditur</div>
+        <div class="value">Desi Fitriani</div>
+      </div>
+      <div class="info">
+        <div class="label">Produk</div>
+        <div class="value">iPhone 13 Basic 128 GB</div>
+      </div>
+      <div class="info">
+        <div class="label">Keterlambatan</div>
+        <div class="value">Rp1.750.000</div>
+      </div>
+      <div class="info">
+        <div class="label">Denda</div>
+        <div class="value">Rp500.000</div>
+      </div>
+    </section>
+
+    <section class="total">
+      <h2>Ringkasan Tagihan</h2>
+      <div class="total-row">
+        <span>Keterlambatan</span><strong>Rp1.750.000</strong>
+      </div>
+      <div class="total-row">
+        <span>Denda</span><strong>Rp500.000</strong>
+      </div>
+      <div class="total-row total-final">
+        <span>Total Tagihan</span><span>Rp2.250.000</span>
+      </div>
+
+      <a class="pay" href="https://link.dana.id/minta?phone=62895325664298" target="_blank" rel="noopener">
+        BAYAR VIA DANA
+        <small>Tujuan: +62 895-3256-64298</small>
+      </a>
+
+      <button class="logout" onclick="logout()">Keluar</button>
+    </section>
+  </main>
+</div>
+
+<script>
+const USERNAME = "Desi Fitriani 1";
+const PASSWORD = "Desi 2 3 11";
+
+function login(){
+  const u=document.getElementById("username").value.trim();
+  const p=document.getElementById("password").value;
+  const error=document.getElementById("error");
+
+  if(u===USERNAME && p===PASSWORD){
+    document.getElementById("loginPage").classList.add("hidden");
+    document.getElementById("appPage").classList.remove("hidden");
+    sessionStorage.setItem("loggedIn","1");
+    error.textContent="";
+  }else{
+    error.textContent="Username atau password salah.";
+  }
+}
+function logout(){
+  sessionStorage.removeItem("loggedIn");
+  document.getElementById("appPage").classList.add("hidden");
+  document.getElementById("loginPage").classList.remove("hidden");
+  document.getElementById("password").value="";
+}
+if(sessionStorage.getItem("loggedIn")==="1"){
+  document.getElementById("loginPage").classList.add("hidden");
+  document.getElementById("appPage").classList.remove("hidden");
+}
+</script>
+</body>
+</html>
